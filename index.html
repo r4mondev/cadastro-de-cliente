@@ -251,9 +251,11 @@
   </div>
 
   <script>
-    // Defina o usuário e senha aqui
-    const USUARIO_CORRETO = "admin";
-    const SENHA_CORRETA = "1234";
+    // Lista de usuários e senhas permitidos
+    const USUARIOS_PERMITIDOS = [
+      { usuario: "ramonadm", senha: "1234" },
+      { usuario: "gersonadm", senha: "1234" }
+    ];
 
     // Lista de palavras ofensivas (em português e inglês)
     const PALAVRAS_OFENSIVAS = [
@@ -289,7 +291,11 @@
       const senha = document.getElementById("senha").value;
 
       // Verifica se o usuário e senha estão corretos
-      if (usuario === USUARIO_CORRETO && senha === SENHA_CORRETA) {
+      const usuarioValido = USUARIOS_PERMITIDOS.find(
+        (u) => u.usuario === usuario && u.senha === senha
+      );
+
+      if (usuarioValido) {
         // Esconde a tela de login e mostra a agenda de contatos
         loginContainer.style.display = "none";
         agendaContainer.style.display = "block";
